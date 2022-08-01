@@ -9,12 +9,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import fr.m2i.models.Actor;
 
 /**
  * Servlet implementation class WelcomeServlet
@@ -42,6 +47,7 @@ public class WelcomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setAttribute("actors",this.exempleDataAccess());
+		request.setAttribute("actor", this.jpaExemple());
 		
 		this.getServletContext().getRequestDispatcher(PAGE).forward(request, response);
 	}
@@ -72,6 +78,17 @@ public class WelcomeServlet extends HttpServlet {
 		
 		return elements;
 		
+	}
+	
+	protected Actor jpaExemple() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("UnityPersist");
+		EntityManager em = factory.createEntityManager();
+		
+		Actor actor = em.find(Actor.class, 1);
+		
+		em.close();
+		
+		return actor;
 	}
 
 }
