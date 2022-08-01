@@ -24,7 +24,7 @@ import fr.m2i.models.Actor;
 /**
  * Servlet implementation class WelcomeServlet
  */
-@WebServlet("/index")
+@WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE="/WEB-INF/pages/index.jsp";

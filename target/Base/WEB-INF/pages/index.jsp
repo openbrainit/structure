@@ -12,32 +12,36 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>WelcomePage M2I</title>
-	<link rel="stylesheet" href="<c:url value="/css/style.css" />">
+	<link rel="stylesheet" href="<c:url value="/ressources/css/style.css" />">
 </head>
 <body>
 <header>
-	<h1><strong><c:out value="${'Hello, the world'}"></c:out></strong></h1>
-	<hr>
+	<h1><strong><c:out value="${'Template V1.0'}"></c:out></strong></h1>
 </header>
 <main>
-		<p>With JPA / Hibernate :: ${actor.last_name}</p>
-	<hr>
-	<table>
-		<thead>
-			<tr>
-				<th>Ressource</th><th>URL</th><th>Link</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>WebService Jax-RS</td><td><c:out value="/api/hello"></c:out></td><td><a href="<c:url value="/api/hello" />">GO</a></td>
-			</tr>
-		</tbody>	
-		<tfoot>
-		</tfoot>
-	</table>
+	<fieldset>
+		<legend>Acces WS</legend>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Ressource</th><th>URL</th><th>Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>WebService Jax-RS</td><td><c:out value="/api/hello"></c:out></td><td><a href="<c:url value="/api/hello" />">GO</a></td>
+				</tr>
+			</tbody>	
+			<tfoot>
+			</tfoot>
+		</table>
+	</fieldset>
 	
-	<div>
+	
+	
+	<fieldset>
+		<legend>Example JDBC</legend>
+		<div class="over">
 		<ul>
 			<c:forEach items="${actors}" var="actor" varStatus="status">
 				<li>N°<c:out value="${ status.count }" /> : <c:out value="${ actor }" /></li>
@@ -45,10 +49,18 @@
 		
 		</ul>
 	</div>
+	</fieldset>
+	
+	<fieldset>
+		<legend>Example JPA / Hibernate</legend>
+		<p>Find actor :: ${actor.last_name} -  ${actor.first_name}</p>
+	
+	</fieldset>
+	
 </main>
 
 <footer>
-<em>(c)2022 - M2i</em>
+	<em>(c)2022 - M2i</em>
 </footer>
 
 	
