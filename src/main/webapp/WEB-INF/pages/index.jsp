@@ -57,6 +57,18 @@
 	
 	</fieldset>
 	
+	
+	
+	<fieldset>
+		<legend>With DAO</legend>
+		<select>
+			<c:forEach items="${exemple}" var="actor" varStatus="status">
+				<option>${actor.first_name}</option>
+			</c:forEach>
+		</select>
+	
+	</fieldset>
+	
 </main>
 
 <footer>

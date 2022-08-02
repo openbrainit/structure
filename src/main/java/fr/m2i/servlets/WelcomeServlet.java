@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import fr.m2i.Db.DaoFactory;
 import fr.m2i.models.Actor;
 
 /**
@@ -46,6 +48,9 @@ public class WelcomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setAttribute("exemple",DaoFactory.getInstance().getActorDao().lister());
+		
+		
 		request.setAttribute("actors",this.exempleDataAccess());
 		request.setAttribute("actor", this.jpaExemple());
 		
@@ -62,6 +67,8 @@ public class WelcomeServlet extends HttpServlet {
 	
 	
 	protected List<String> exempleDataAccess() {
+		
+
 		List<String> elements = new LinkedList<>(); 
 		try (Connection connection = dataSource.getConnection()) {
 		    
@@ -71,6 +78,8 @@ public class WelcomeServlet extends HttpServlet {
 			while(rs.next()) {
 				elements.add(rs.getString("first_name") + " " +rs.getString("last_name"));
 			}
+			
+			rs.close();
 			state.close();	 
 		} catch (SQLException e) {
 			
@@ -90,5 +99,7 @@ public class WelcomeServlet extends HttpServlet {
 		
 		return actor;
 	}
+	
+	
 
 }
